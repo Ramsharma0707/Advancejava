@@ -8,10 +8,10 @@ import java.util.List;
 
 public class TestMarksheet {
 	public static void main(String[] args) throws Exception {
-		testAdd();
+		//testAdd();
 		//testUpdate();
 		//testDelete();
-		//testSearch();
+		testSearch();
 		//testFindByPk();
 	}
 
@@ -48,7 +48,11 @@ private static void testUpdate() throws Exception {
 	model.update(bean);
 	
 }
-   private static void testDelete() throws Exception {
+
+
+
+
+private static void testDelete() throws Exception {
 	MarksheetModel model=new MarksheetModel();
 	model.delete(11);
 		
@@ -56,11 +60,15 @@ private static void testUpdate() throws Exception {
  
 
    private static void testSearch() throws Exception {
+	   MarksheetBean bean= new MarksheetBean();
+	  // bean.setName("a");
+	   bean.setRoll_no(120);
 	 MarksheetModel model= new MarksheetModel();
-	 List list=model.search();
+	 //List list=model.search(bean, 2 ,5);
+	 List list=model.search(bean,2,2);
 	 Iterator it=list.iterator();
 	 while (it.hasNext()) {
-		 MarksheetBean bean=(MarksheetBean) it.next();
+		  bean=(MarksheetBean) it.next();
 		 System.out.print(" "+bean.getId());
 		 System.out.print("\t"+bean.getName());
 		 System.out.print("\t"+bean.getRoll_no());
@@ -70,7 +78,12 @@ private static void testUpdate() throws Exception {
 	 }
 	
 }
-	private static void testFindByPk() throws Exception {
+
+   
+   
+   
+   
+   private static void testFindByPk() throws Exception {
 		MarksheetModel model=new MarksheetModel();
 		MarksheetBean bean= model.findByPk(5);
 		if(bean !=null) {

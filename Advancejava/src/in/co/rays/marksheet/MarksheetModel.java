@@ -53,14 +53,36 @@ public class MarksheetModel {
 		
 	}
 	
-	public List search() throws Exception {
+	public List search(MarksheetBean bean,int pageNo, int pageSize) throws Exception {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		Connection conn=DriverManager.getConnection("jdbc:mysql://localhost:/advance04", "root", "root");
-		PreparedStatement ps=conn.prepareStatement("select * from marksheet");
+		StringBuffer sql=new StringBuffer("select * from marksheet where 1=1");
+		
+		if(bean!=null) {
+			if (bean.getName()!=null && bean.getName().length()>0) {
+				sql.append(" and name like '" +bean.getName()+"%'");
+				
+			}
+			if(bean.getRoll_no()>0) {
+				sql.append(" and roll_no = "+bean.getRoll_no()+" ");
+			}
+			
+		}
+		if (pageSize>0) {
+			pageNo= (pageNo-1)* pageSize;
+			sql.append(" limit "+pageNo +"," +pageSize );
+		}
+		
+		System.out.println("sql............"+sql);
+		PreparedStatement ps=conn.prepareStatement(sql.toString());
+		
+		
 		ResultSet rs=ps.executeQuery();
 		List list=new ArrayList();
 		while (rs.next()) {
-			MarksheetBean bean= new MarksheetBean();
+			 bean= new MarksheetBean();
+		//int p=	rs.getInt(1);
+		//bean.setId(p);
 			bean.setId(rs.getInt(1));
 			bean.setName(rs.getString(2));
 			bean.setRoll_no(rs.getInt(3));
