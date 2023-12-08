@@ -8,17 +8,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 import in.co.rays.marksheet.MarksheetBean;
+import in.co.rays.util.JDBCDataSource;
 
 
 
 public class UserModel {
 	public void add(UserBean bean) throws Exception{
-	Class.forName("com.mysql.cj.jdbc.Driver");
-	Connection conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/advance04", "root", "root");
+	//Class.forName("com.mysql.cj.jdbc.Driver");
+	//Connection conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/advance04", "root", "root");
+		
+		Connection conn=JDBCDataSource.getConnection();
 	PreparedStatement ps=conn.prepareStatement("insert into  user values(?,?,?,?,?,?,?)");
-	ps.setInt(1, nextpk());
+//	ps.setInt(1, nextpk());
 	
-	//ps.setInt(1, bean.getId());
+	ps.setInt(1, bean.getId());
 	ps.setString(2, bean.getFirst_name());
 	ps.setString(3, bean.getLast_name());
 	ps.setString(4, bean.getLogin_id());
@@ -34,8 +37,11 @@ public class UserModel {
 	
 	public Integer nextpk() throws Exception{
 		int pk=0;
-		Class.forName("com.mysql.cj.jdbc.Driver");
-		Connection conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/advance04", "root", "root");
+		//Class.forName("com.mysql.cj.jdbc.Driver");
+		//Connection conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/advance04", "root", "root");
+		
+		Connection conn= JDBCDataSource.getConnection();	
+		
 		PreparedStatement ps=conn.prepareStatement("select max(id) from user");
 		ResultSet rs= ps.executeQuery();
 		while(rs.next()) {

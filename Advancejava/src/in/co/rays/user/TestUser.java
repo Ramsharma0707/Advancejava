@@ -8,26 +8,26 @@ import java.util.List;
 
 public class TestUser {
 	public static void main(String[] args) throws Exception {
-		// testAdd();
+		 testAdd();
 		// findByPk();
 		// testAuthenticate();
 		// testUpdate();
 		// testDelete();
-		testSearch();
+		//testSearch();
 
 	}
 
 	private static void testAdd() throws Exception {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		UserBean bean = new UserBean();
-		// bean.setId(1);
+		bean.setId(4);
 
-		bean.setFirst_name("Lavish");
-		bean.setLast_name("ojha");
-		bean.setLogin_id("lavish@gmail.com");
-		bean.setPassword("123");
-		bean.setDob(sdf.parse("2000-01-22"));
-		bean.setAddress("Bhopal");
+		bean.setFirst_name("Manish");
+		bean.setLast_name("sharma");
+		bean.setLogin_id("manish@gmail.com");
+		bean.setPassword("1234");
+		bean.setDob(sdf.parse("1995-01-22"));
+		bean.setAddress("bhopal");
 		UserModel model = new UserModel();
 		model.add(bean);
 

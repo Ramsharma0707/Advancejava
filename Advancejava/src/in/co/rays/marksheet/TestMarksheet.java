@@ -11,12 +11,12 @@ public class TestMarksheet {
 		//testAdd();
 		//testUpdate();
 		//testDelete();
+		
+	
 		testSearch();
+	
 		//testFindByPk();
 	}
-
-
-
 
 
 	private static void testAdd() throws Exception {

@@ -13,7 +13,8 @@ public class StroreProcedureOut {
 		CallableStatement stmt=conn.prepareCall("{CALL empOUT(?)}");
 		stmt.registerOutParameter(1,Types.INTEGER);
 		stmt.execute();
-		System.out.println(stmt.getInt(2));
+		
+		System.out.println(stmt.getInt(1));
 		
 	}
 

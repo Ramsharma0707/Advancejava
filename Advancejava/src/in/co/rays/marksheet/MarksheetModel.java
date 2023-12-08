@@ -10,6 +10,8 @@ import java.util.List;
 
 import com.mysql.cj.protocol.Resultset;
 
+import in.co.rays.util.JDBCDataSource;
+
 public class MarksheetModel {
 	public void add(MarksheetBean bean) throws Exception{
 	Class.forName("com.mysql.cj.jdbc.Driver");
@@ -54,8 +56,9 @@ public class MarksheetModel {
 	}
 	
 	public List search(MarksheetBean bean,int pageNo, int pageSize) throws Exception {
-		Class.forName("com.mysql.cj.jdbc.Driver");
-		Connection conn=DriverManager.getConnection("jdbc:mysql://localhost:/advance04", "root", "root");
+	//	Class.forName("com.mysql.cj.jdbc.Driver");
+	//	Connection conn=DriverManager.getConnection("jdbc:mysql://localhost:/advance04", "root", "root");
+		Connection conn= JDBCDataSource.getConnection();
 		StringBuffer sql=new StringBuffer("select * from marksheet where 1=1");
 		
 		if(bean!=null) {

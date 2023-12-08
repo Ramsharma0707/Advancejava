@@ -3,6 +3,7 @@ package in.co.rays.callablestatement;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.Types;
 
 
@@ -15,6 +16,7 @@ public class StroeProcedureInOut {
 		stmt.setInt(1, 1);
 		stmt.registerOutParameter(1, Types.INTEGER);
 		stmt.execute();
+		
 		System.out.println(stmt.getInt(1));
 		
 	}
